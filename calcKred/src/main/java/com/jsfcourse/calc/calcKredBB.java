@@ -10,7 +10,7 @@ import jakarta.faces.context.FacesContext;
 @Named
 @RequestScoped
 //@SessionScoped
-public class calcKredBB {
+public class CalcKredBB {
 	private String ammount;
 	private String years;
 	private String interest;
