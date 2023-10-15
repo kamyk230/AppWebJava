@@ -52,6 +52,7 @@ public class CalcKredBB {
 	public void setResult(Double result) {
 		this.result = result;
 	}
+	
 
 	public boolean doTheMath() {
 		try {
