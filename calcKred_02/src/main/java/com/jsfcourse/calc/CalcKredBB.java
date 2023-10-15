@@ -59,13 +59,10 @@ public class CalcKredBB {
 			double years = Double.parseDouble(this.years);
 			double interest = Double.parseDouble(this.interest);
 			
-			if (years == 0) {
-				ctx.addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Liczba lat musi wynosić przynajmniej 1", null));
-				return false;
-			}
+			
 			result = (ammount + (ammount*(interest/100)))/(years*12);
-
+			result = Math.round(result * 100.0) / 100.0;
+			
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
 			return true;
 		} catch (Exception e) {

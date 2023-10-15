@@ -14,13 +14,15 @@
 	<h:form id="bla">
 	<h:panelGrid id = "formularz" columns = "3" cellpadding = "5">
 	<p:outputLabel for="kwota" value="Kwota kredytu"/>
-    <p:inputText id="kwota" value="#{calcKredBB.ammount}" required="true" requiredMessage="Podaj kwotę kredytu"/>
+    <p:inputNumber id="kwota" value="#{calcKredBB.ammount}" minValue="1" symbol=" zł" 
+    	symbolPosition="s" decimalSeparator="," thousandSeparator="&nbsp;" required="true" requiredMessage="Podaj kwotę kredytu"/>
     <p:message for="kwota"/>
     <p:outputLabel for="oprocentowanie" value="Oprocentowanie"/>
-    <p:inputText id="oprocentowanie" value="#{calcKredBB.interest}" required="true" requiredMessage="Podaj oprocentowanie kredytu"/>
+    <p:inputNumber id="oprocentowanie" value="#{calcKredBB.interest}" symbol="%"
+        symbolPosition="s" emptyValue="empty" minValue="0" decimalPlaces="0" required="true" requiredMessage="Podaj oprocentowanie kredytu"/>
     <p:message for="oprocentowanie"/>
     <p:outputLabel for="lata" value="Na ile lat"/>
-    <p:inputText id="lata" value="#{calcKredBB.years}" required="true" requiredMessage="Podaj na ile lat" />
+    <p:inputNumber id="lata" value="#{calcKredBB.years}" minValue="1" decimalPlaces="0" required="true" requiredMessage="Podaj, na ile lat"/>
     <p:message for="lata"/>
 	<p:commandButton value="Oblicz" action="#{calcKredBB.calculate()}" update="@form"/>
 	</h:panelGrid>
