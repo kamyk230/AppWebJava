@@ -11,9 +11,9 @@ import jakarta.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CalcKredBB {
-	private String ammount;
-	private String years;
-	private String interest;
+	private Double ammount;
+	private Double years;
+	private Double interest;
 	private Double result;
 
 	@Inject
@@ -21,27 +21,29 @@ public class CalcKredBB {
 
 	
 
-	public String getAmmount() {
+
+
+	public Double getAmmount() {
 		return ammount;
 	}
 
-	public void setAmmount(String ammount) {
+	public void setAmmount(Double ammount) {
 		this.ammount = ammount;
 	}
 
-	public String getYears() {
+	public Double getYears() {
 		return years;
 	}
 
-	public void setYears(String years) {
+	public void setYears(Double years) {
 		this.years = years;
 	}
 
-	public String getInterest() {
+	public Double getInterest() {
 		return interest;
 	}
 
-	public void setInterest(String interest) {
+	public void setInterest(Double interest) {
 		this.interest = interest;
 	}
 
@@ -52,13 +54,12 @@ public class CalcKredBB {
 	public void setResult(Double result) {
 		this.result = result;
 	}
-	
 
 	public boolean doTheMath() {
 		try {
-			double ammount = Double.parseDouble(this.ammount);
-			double years = Double.parseDouble(this.years);
-			double interest = Double.parseDouble(this.interest);
+			double ammount = this.ammount;
+			double years = this.years;
+			double interest = this.interest;
 			
 			
 			result = (ammount + (ammount*(interest/100)))/(years*12);
