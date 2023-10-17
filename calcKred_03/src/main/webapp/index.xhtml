@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<p:panel header="Kalkulator">
+
+			<p:messages id="msg" />
+
+			<h:form id="bla">
+				<h:panelGrid id="formularz" columns="3" cellpadding="5">
+					<p:outputLabel for="kwota" value="Kwota kredytu" />
+					<p:inputNumber id="kwota" value="#{calcKredBB.ammount}"
+						minValue="1" symbol=" zł" symbolPosition="s" decimalSeparator=","
+						thousandSeparator="&nbsp;" required="true"
+						requiredMessage="Podaj kwotę kredytu" />
+					<p:message for="kwota" />
+					<p:outputLabel for="oprocentowanie" value="Oprocentowanie" />
+					<p:inputNumber id="oprocentowanie" value="#{calcKredBB.interest}"
+						symbol="%" symbolPosition="s" emptyValue="empty" minValue="0"
+						decimalPlaces="0" required="true"
+						requiredMessage="Podaj oprocentowanie kredytu" />
+					<p:message for="oprocentowanie" />
+					<p:outputLabel for="lata" value="Na ile lat" />
+					<p:inputNumber id="lata" value="#{calcKredBB.years}" minValue="1"
+						decimalPlaces="0" required="true"
+						requiredMessage="Podaj, na ile lat" />
+					<p:message for="lata" />
+					<p:commandButton value="Oblicz" action="#{calcKredBB.calculate()}"
+						update="@form" />
+				</h:panelGrid>
+				<p:messages id="msg" />
+
+			</h:form>
+
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
+</html>
