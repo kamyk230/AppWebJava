@@ -12,33 +12,33 @@ public class RentPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	private int idrent;
+	private int idRent;
 
-	@Column(name="users_iduser", insertable=false, updatable=false)
-	private int usersIduser;
+	@Column(insertable=false, updatable=false)
+	private int users_idUsers;
 
-	@Column(name="car_idcar", insertable=false, updatable=false)
-	private int carIdcar;
+	@Column(insertable=false, updatable=false)
+	private int car_Idcar;
 
 	public RentPK() {
 	}
-	public int getIdrent() {
-		return this.idrent;
+	public int getIdRent() {
+		return this.idRent;
 	}
-	public void setIdrent(int idrent) {
-		this.idrent = idrent;
+	public void setIdRent(int idRent) {
+		this.idRent = idRent;
 	}
-	public int getUsersIduser() {
-		return this.usersIduser;
+	public int getUsers_idUsers() {
+		return this.users_idUsers;
 	}
-	public void setUsersIduser(int usersIduser) {
-		this.usersIduser = usersIduser;
+	public void setUsers_idUsers(int users_idUsers) {
+		this.users_idUsers = users_idUsers;
 	}
 	public int getCarIdcar() {
-		return this.carIdcar;
+		return this.car_Idcar;
 	}
 	public void setCarIdcar(int carIdcar) {
-		this.carIdcar = carIdcar;
+		this.car_Idcar = carIdcar;
 	}
 
 	public boolean equals(Object other) {
@@ -50,17 +50,17 @@ public class RentPK implements Serializable {
 		}
 		RentPK castOther = (RentPK)other;
 		return 
-			(this.idrent == castOther.idrent)
-			&& (this.usersIduser == castOther.usersIduser)
-			&& (this.carIdcar == castOther.carIdcar);
+			(this.idRent == castOther.idRent)
+			&& (this.users_idUsers == castOther.users_idUsers)
+			&& (this.car_Idcar == castOther.car_Idcar);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.idrent;
-		hash = hash * prime + this.usersIduser;
-		hash = hash * prime + this.carIdcar;
+		hash = hash * prime + this.idRent;
+		hash = hash * prime + this.users_idUsers;
+		hash = hash * prime + this.car_Idcar;
 		
 		return hash;
 	}

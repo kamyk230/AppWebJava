@@ -16,7 +16,7 @@ public class Brand implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idbrand;
+	private int idBrand;
 
 	private String brandname;
 
@@ -27,12 +27,12 @@ public class Brand implements Serializable {
 	public Brand() {
 	}
 
-	public int getIdbrand() {
-		return this.idbrand;
+	public int getIdBrand() {
+		return this.idBrand;
 	}
 
-	public void setIdbrand(int idbrand) {
-		this.idbrand = idbrand;
+	public void setIdBrand(int idBrand) {
+		this.idBrand = idBrand;
 	}
 
 	public String getBrandname() {

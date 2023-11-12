@@ -16,9 +16,9 @@ public class Role implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idrole;
+	private int idRole;
 
-	private String name;
+	private String rolename;
 
 	//bi-directional many-to-one association to Permission
 	@OneToMany(mappedBy="role")
@@ -27,20 +27,20 @@ public class Role implements Serializable {
 	public Role() {
 	}
 
-	public int getIdrole() {
-		return this.idrole;
+	public int getIdRole() {
+		return this.idRole;
 	}
 
-	public void setIdrole(int idrole) {
-		this.idrole = idrole;
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
 	}
 
-	public String getName() {
-		return this.name;
+	public String getRolename() {
+		return this.rolename;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
 	}
 
 	public List<Permission> getPermissions() {

@@ -28,7 +28,7 @@ public class Rent implements Serializable {
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="users_iduser")
+	@JoinColumn(name="Users_idUsers")
 	private User user;
 
 	public Rent() {

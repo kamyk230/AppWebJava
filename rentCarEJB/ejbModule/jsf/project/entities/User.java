@@ -3,6 +3,7 @@ package jsf.project.entities;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -17,7 +18,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idusers;
+	private int idUsers;
 
 	private String email;
 
@@ -33,19 +34,27 @@ public class User implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date whenmodified;
 
-	private int whocreated;
+	private String whocreated;
 
-	private int whomodified;
+	private String whomodified;
+
+	//bi-directional many-to-one association to Rent
+	@OneToMany(mappedBy="user")
+	private List<Rent> rents;
+
+	//bi-directional many-to-one association to Permission
+	@OneToMany(mappedBy="user")
+	private List<Permission> permissions;
 
 	public User() {
 	}
 
-	public int getIdusers() {
-		return this.idusers;
+	public int getIdUsers() {
+		return this.idUsers;
 	}
 
-	public void setIdusers(int idusers) {
-		this.idusers = idusers;
+	public void setIdUsers(int idUsers) {
+		this.idUsers = idUsers;
 	}
 
 	public String getEmail() {
@@ -96,20 +105,64 @@ public class User implements Serializable {
 		this.whenmodified = whenmodified;
 	}
 
-	public int getWhocreated() {
+	public String getWhocreated() {
 		return this.whocreated;
 	}
 
-	public void setWhocreated(int whocreated) {
+	public void setWhocreated(String whocreated) {
 		this.whocreated = whocreated;
 	}
 
-	public int getWhomodified() {
+	public String getWhomodified() {
 		return this.whomodified;
 	}
 
-	public void setWhomodified(int whomodified) {
+	public void setWhomodified(String whomodified) {
 		this.whomodified = whomodified;
+	}
+
+	public List<Rent> getRents() {
+		return this.rents;
+	}
+
+	public void setRents(List<Rent> rents) {
+		this.rents = rents;
+	}
+
+	public Rent addRent(Rent rent) {
+		getRents().add(rent);
+		rent.setUser(this);
+
+		return rent;
+	}
+
+	public Rent removeRent(Rent rent) {
+		getRents().remove(rent);
+		rent.setUser(null);
+
+		return rent;
+	}
+
+	public List<Permission> getPermissions() {
+		return this.permissions;
+	}
+
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
+	}
+
+	public Permission addPermission(Permission permission) {
+		getPermissions().add(permission);
+		permission.setUser(this);
+
+		return permission;
+	}
+
+	public Permission removePermission(Permission permission) {
+		getPermissions().remove(permission);
+		permission.setUser(null);
+
+		return permission;
 	}
 
 }

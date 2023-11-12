@@ -14,11 +14,9 @@ import java.util.Date;
 public class Permission implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="id_permission")
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPermission;
-
-	@Column(name="users_iduser")
-	private int usersIduser;
 
 	@Temporal(TemporalType.DATE)
 	private Date whenrevoked;
@@ -26,8 +24,14 @@ public class Permission implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date whenset;
 
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="Users_idUsers")
+	private User user;
+
 	//bi-directional many-to-one association to Role
 	@ManyToOne
+	@JoinColumn(name="Role_idRole")
 	private Role role;
 
 	public Permission() {
@@ -39,14 +43,6 @@ public class Permission implements Serializable {
 
 	public void setIdPermission(int idPermission) {
 		this.idPermission = idPermission;
-	}
-
-	public int getUsersIduser() {
-		return this.usersIduser;
-	}
-
-	public void setUsersIduser(int usersIduser) {
-		this.usersIduser = usersIduser;
 	}
 
 	public Date getWhenrevoked() {
@@ -63,6 +59,14 @@ public class Permission implements Serializable {
 
 	public void setWhenset(Date whenset) {
 		this.whenset = whenset;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Role getRole() {

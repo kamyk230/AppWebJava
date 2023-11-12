@@ -22,7 +22,7 @@ public class Car implements Serializable {
 
 	private int price;
 
-	private int productionyear;
+	private String productionyear;
 
 	//bi-directional many-to-one association to Brand
 	@ManyToOne
@@ -59,11 +59,11 @@ public class Car implements Serializable {
 		this.price = price;
 	}
 
-	public int getProductionyear() {
+	public String getProductionyear() {
 		return this.productionyear;
 	}
 
-	public void setProductionyear(int productionyear) {
+	public void setProductionyear(String productionyear) {
 		this.productionyear = productionyear;
 	}
 
