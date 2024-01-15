@@ -1,0 +1,31 @@
+<ui:composition template="/templates/mainTemplate.xhtml"
+                 xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">
+        Strona Główna - RentCar
+    </ui:define>
+
+    <ui:define name="content">
+
+        <!-- Opis usług -->
+        <p:panelGrid columns="2" style="width:100%; margin-top:20px;" columnClasses="ui-grid-col-4,ui-grid-col-8">
+            <p:graphicImage name="resources/baner.png"/>
+            <h:outputText value="Tutaj znajdziesz najlepsze oferty wynajmu samochodów. Łatwe rezerwacje, świetne ceny, zawsze na czas!" styleClass="welcome-message"/>
+        </p:panelGrid>
+
+    </ui:define>
+
+    <ui:define name="footer">
+        <!-- Stopka z kontaktami i mediami społecznościowymi -->
+        <p>Website By: Kamil Dziura PAW3</p>
+        <p>Contact: info@rentcar.com | +48 123 456 789</p>
+        <p>Follow us on:
+            <p:commandButton icon="pi pi-facebook" onclick="window.location.href='#'" />
+            <p:commandButton icon="pi pi-instagram" onclick="window.location.href='#'" />
+        </p>
+    </ui:define>
+
+</ui:composition>

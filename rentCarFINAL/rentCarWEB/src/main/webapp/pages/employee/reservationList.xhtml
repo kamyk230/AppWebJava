@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/mainTemplate.xhtml">
+
+	<ui:define name="title">Lista Rezerwacji - RentCar</ui:define>
+
+	<ui:define name="content">
+		<h1>Lista Rezerwacji</h1>
+
+		<!-- Pole na wiadomości -->
+		<p:messages id="messages" showDetail="true" autoUpdate="true"
+			closable="true" />
+
+		<!-- Tabela z rezerwacjami -->
+		<p:dataTable id="reservationTable" var="reservation"
+			value="#{reservationListBB.reservations}" paginator="true" rows="10"
+			widgetVar="reservationTable"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			currentPageReportTemplate="{startRecord}-{endRecord} z {totalRecords}"
+			emptyMessage="Brak rezerwacji do wyświetlenia">
+
+			<p:column headerText="Data Rezerwacji">
+				<h:outputText value="#{reservation.daterent}" />
+			</p:column>
+
+			<p:column headerText="Marka">
+				<h:outputText value="#{reservation.car.brand.brandname}" />
+			</p:column>
+
+			<p:column headerText="Model">
+				<h:outputText value="#{reservation.car.model}" />
+			</p:column>
+
+			<p:column headerText="Email użytkownika">
+				<h:outputText value="#{reservation.user.email}" />
+			</p:column>
+
+			<p:column headerText="Status">
+				<h:outputText
+					value="#{reservation.isconfirmed eq 'Yes' ? 'Potwierdzono' : 'Niepotwierdzono'}" />
+			</p:column>
+
+			<p:column headerText="Akcje" style="width:150px">
+				<h:form>
+					<p:commandButton value="Potwierdź"
+						rendered="#{reservation.isconfirmed eq 'No'}"
+						action="#{reservationListBB.confirmReservation(reservation.idRent)}"
+						update=":messages, reservationTable" icon="pi pi-check" />
+
+					<p:commandButton value="Anuluj"
+						rendered="#{reservation.isconfirmed eq 'Yes'}"
+						action="#{reservationListBB.cancelReservation(reservation.idRent)}"
+						update=":messages, reservationTable" icon="pi pi-times" />
+				</h:form>
+			</p:column>
+
+		</p:dataTable>
+	</ui:define>
+
+</ui:composition>
+
+</html>

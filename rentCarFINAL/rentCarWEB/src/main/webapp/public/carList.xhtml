@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/mainTemplate.xhtml">
+
+	<ui:define name="title">
+        Lista Samochodów - RentCar
+    </ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:panel header="Opcje wyszukiwania" toggleable="true"
+				collapsed="true" style="margin-bottom: 1em;">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputLabel for="brand" value="Marka:" />
+					<p:inputText id="brand" value="#{carListBB.brand}" />
+					<p:commandButton value="Szukaj" update="carList" />
+				</h:panelGrid>
+			</p:panel>
+
+			<p:messages />
+			<p:dataTable id="carList" value="#{carListBB.list}" var="car">
+				<p:column>
+					<f:facet name="header">Marka</f:facet>
+					<h:outputText value="#{car.brand.brandname}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Model</f:facet>
+					<h:outputText value="#{car.model}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">Rok produkcji</f:facet>
+					<h:outputText value="#{car.productionyear}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Cena</f:facet>
+					<h:outputText value="#{car.price}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Akcje</f:facet>
+					<p:commandButton value="Zarezerwuj" action="#{carListBB.prepareReservation(car.idcar)}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

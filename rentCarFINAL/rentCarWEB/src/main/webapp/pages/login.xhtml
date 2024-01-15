@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="jakarta.faces.facelets" xmlns:h="jakarta.faces.html"
+	xmlns:f="jakarta.faces.core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Logowanie</title>
+</h:head>
+
+<h:body>
+	<div class="ui-fluid">
+		<div class="ui-g">
+			<div class="ui-g-12 ui-md-4 ui-md-offset-4">
+				<p:panel header="Logowanie">
+					<h:form id="loginForm">
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="email" value="Email:" />
+							<p:inputText id="email" value="#{loginBB.email}" required="true"
+								requiredMessage="Podaj email" validatorMessage="Wprowadź poprawny adres email">
+								<f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+							</p:inputText>
+
+							<h:outputLabel for="pass" value="Hasło:" />
+							<p:password id="pass" value="#{loginBB.pass}" required="true"
+								requiredMessage="Podaj hasło" />
+
+							<f:facet name="footer">
+								<p:commandButton value="Zaloguj" action="#{loginBB.doLogin}"
+									update="@form" styleClass="login-button" />
+							</f:facet>
+						</h:panelGrid>
+						<h:outputLink value="/rentcar/public/register.xhtml"
+							styleClass="register-link">Zarejestruj się</h:outputLink>
+						<p:messages id="msg" />
+					</h:form>
+				</p:panel>
+			</div>
+		</div>
+		<footer>
+		</footer>
+	</div>
+</h:body>
+
+</html>
