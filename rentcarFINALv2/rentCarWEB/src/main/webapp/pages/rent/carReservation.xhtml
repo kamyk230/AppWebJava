@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Rezerwacja samochodu</title>
+</h:head>
+<h:body>
+	<h:form id="reservationForm">
+		<p:growl id="messages" showDetail="true" autoUpdate="true" />
+
+		<p:panel header="Rezerwacja samochodu">
+			<p:panelGrid columns="1" style="width: auto; margin-bottom: 10px;">
+				<p:outputLabel for="startDate" value="Wybierz datę rozpoczęcia:" />
+				<p:calendar id="startDate" value="#{carListBB.desiredStartDate}"
+					navigator="true" pattern="dd/MM/yyyy" showButtonBar="true" />
+
+				<p:outputLabel for="endDate" value="Wybierz datę zakończenia:" />
+				<p:calendar id="endDate" value="#{carListBB.desiredEndDate}"
+					navigator="true" pattern="dd/MM/yyyy" showButtonBar="true" />
+				<p:commandButton value="Rezerwuj"
+					actionListener="#{carListBB.reserveCar}" process="@form"
+					ajax="false" />
+				<p:commandButton value="Anuluj"
+					action="/public/carList?faces-redirect=true" immediate="true"
+					style="margin-top: 10px;" />
+			</p:panelGrid>
+		</p:panel>
+
+		<p:panel header="Zaplanowane wizyty">
+			<p:dataList value="#{carListBB.confirmedAppointments}"
+				var="appointment" type="ordered"
+				emptyMessage="Brak zaplanowanych wizyt.">
+				<p:outputLabel
+					value="#{appointment.daterent} - #{appointment.daterentend}" />
+			</p:dataList>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

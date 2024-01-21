@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/mainTemplate.xhtml">
+
+	<ui:define name="title">
+        Lista Samochodów - RentCar
+    </ui:define>
+
+	<ui:define name="content">
+		<p:messages id="messages" autoUpdate="true" closable="true" />
+		<h:form>
+			<p:selectOneMenu id="carAvailabilitySelect"
+				value="#{carListBB.carFilterOption}">
+				<f:selectItem itemLabel="Pokaż dostępne samochody"
+					itemValue="available" />
+				<f:selectItem itemLabel="Pokaż niedostępne samochody"
+					itemValue="unavailable" />
+				<f:selectItem itemLabel="Pokaż wszystkie samochody" itemValue="all" />
+				<p:ajax listener="#{carListBB.updateCarList}" update="carCarousel" />
+			</p:selectOneMenu>
+			<p:commandButton value="Dodaj samochód" action="#{carListBB.prepareAddNewCar}"
+                 rendered="#{loginBB.isEmployee}" icon="pi pi-plus" />
+
+			<p:carousel id="carCarousel" value="#{carListBB.carsForCarousel}"
+				var="car" numVisible="3" circular="true">
+				<p:panel header="#{car.brand.brandname} #{car.model}">
+					<h:panelGrid columns="1" styleClass="ui-panelgrid-blank">
+						<p:graphicImage value="#{car.photoURL}" alt="Photo"
+							styleClass="car-image" />
+						<h:outputText value="Cena za dzień: #{car.price} zł" />
+						<h:outputText
+							value="#{car.isAvailable ? 'Dostępny' : 'Niedostępny'}"
+							style="font-weight:bold; color:#{car.isAvailable ? 'green' : 'red'}" />
+						<p:commandButton value="Rezerwuj"
+							action="#{carListBB.prepareReservation(car.idcar)}"
+							rendered="#{car.isAvailable}" icon="pi pi-check" />
+						<p:commandButton value="Edytuj"
+							action="#{carListBB.prepareEdit(car)}"
+							rendered="#{loginBB.isEmployee}" icon="pi pi-pencil" />
+						<p:commandButton value="Deaktywuj"
+							action="#{carListBB.deactivateCar(car)}"
+							rendered="#{loginBB.isEmployee}" icon="pi pi-ban" update="@form" />
+					</h:panelGrid>
+				</p:panel>
+			</p:carousel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>
